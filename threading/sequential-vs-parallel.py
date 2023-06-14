@@ -3,11 +3,18 @@
 import threading
 import time
 
+# Threads:
+#   Sequential run of a function
+#   Parallel run of the same function using threads
+#   Prints summary timing
+
+# Function which does the sequential run
 def sequential_run(name, counter):
    print ("  Starting " + name)
    do_work(name, counter)
    print ("  Exiting " + name)
 
+# Class that does the parallel run
 class myThread (threading.Thread):
    def __init__(self, name, counter):
       threading.Thread.__init__(self)
@@ -18,6 +25,7 @@ class myThread (threading.Thread):
       do_work(self.name, self.counter)
       print ("  Exiting " + self.name)
 
+# Common worker function that sleeps for given seconds
 def do_work(name, counter):
    while counter:
       time.sleep(1)
@@ -34,7 +42,7 @@ print ("Sequential took: %s secs\n" % (time.time() - startTime))
 thread1 = myThread("Parallel-1", 2)
 thread2 = myThread("Parallel-2", 4)
 
-# Start new Threads
+# Start new Threads in parallel
 startTime = time.time()
 thread1.start()
 thread2.start()
