@@ -10,8 +10,8 @@ print('Receiving messages line-by-line ...')
 while True:
    line = ser.readline()
    str_line = line.decode('utf8')
-   print('  {}'.format(str_line))
-   if str_line == "ABORT"
+   print('  {}'.format(str_line), end='')
+   if str_line == 'ABORT\n':
       break
 
 print('Received terminate string')

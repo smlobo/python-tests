@@ -18,6 +18,7 @@ for message in messages:
     print('  {}'.format(message))
     for word in message.split():
         ser.write(word.encode('utf8'))
+        ser.write(b' ')
     ser.write(b'\n')
     ser.flush()
 
