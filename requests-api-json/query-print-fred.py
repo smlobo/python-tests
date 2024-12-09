@@ -6,7 +6,11 @@ import requests
 # Query an API, decode the JSON returned.
 
 # My API key (in a URL parameter)
-API_KEY = "&api_key=e12c0787f51ff6db24ac8029710fa175"
+with open('fred.txt', 'r') as file:
+    # Read the content of the file
+    api_string = file.read().strip()
+
+API_KEY = f"&api_key={api_string}"
 
 # FRED API query URL asking for US population data
 FRED_API = "https://api.stlouisfed.org/fred/series/observations?series_id=POP"
