@@ -1,0 +1,13 @@
+# Intellij
+.idea
+
+# Python
+__pycache__
+
+# MacOS
+.DS_Store
+
+# LLVM
+*.bc
+*.ll
+
