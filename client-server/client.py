@@ -15,7 +15,7 @@ def do_get(portList: list[int], path: str, count: int) -> int:
         print(f'Error: {response.status_code}')
         return count
     print(f'[{count}] To: {port}; Got: {response.status_code} ' +
-          f'{{{response.headers["Server"]}}}: {response.text}')
+          f'{{{response.headers["Server"]}}} {response.text}')
     count += 1
     time.sleep(2)
     return count
@@ -38,9 +38,9 @@ if __name__ == '__main__':
             while portStart <= portEnd:
                 portList.append(portStart)
                 portStart += 1
-            print(f'{portList}')
         else:
             portList = [int(sys.argv[1])]
+    print(f'Sending requests to port(s): {portList}')
 
     count: int = 0
     while True:
