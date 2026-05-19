@@ -11,3 +11,4 @@ __pycache__
 *.bc
 *.ll
 
+.aider*
