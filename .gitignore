@@ -12,3 +12,6 @@ __pycache__
 *.ll
 
 .aider*
+
+# Generated clones created by ai-agent-build-repo.
+ai-agent-build-repo/temp/

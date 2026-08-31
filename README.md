@@ -33,3 +33,16 @@ Date		Population in millions
 ...
 ```
 
+## ai-agent-build-repo
+* clone a GitHub repository
+* detect common project types inside it
+* run standard build commands for each detected project
+```
+% cd ai-agent-build-repo
+% ./build-repo-agent.py https://github.com/example/example-repo.git
+Cloning https://github.com/example/example-repo.git into /tmp/...
+Detected 2 project(s)
+[node] /tmp/.../frontend
+[python] /tmp/.../service
+...
+```

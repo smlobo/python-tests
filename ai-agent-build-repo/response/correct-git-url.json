@@ -1,0 +1,45 @@
+{
+    "completed_at": 1781292008,
+    "created_at": 1781292008,
+    "id": "resp_Ygy4uNgjfm0Ce2355syXaYSboAygY754",
+    "model": "gemma-4-E4B-it-UD-Q4_K_XL.gguf",
+    "object": "response",
+    "output": [
+        {
+            "id": "rs_mIPB56jkKKn242avVikka6RT1Obb35wg",
+            "summary": [],
+            "type": "reasoning",
+            "content": [
+                {
+                    "text": "The user wants me to act as a build agent supervisor and analyze a failed git clone attempt.\nThe failure details are:\n- `repo_url`: `git@github.comm:codeclimate-community/codeclimate-govet`\n- `command`: `git clone git@github.comm:codeclimate-community/codeclimate-govet ...`\n- `returncode`: 128\n- `stderr`: `Cloning into '...'\\nssh: Could not resolve hostname github.comm: nodename nor servname provided, or not known\\nfatal: Could not read from remote repository.\\n\\nPlease make sure you have the correct access rights\\nand the repository exists.\\n`\n\nThe critical error is `ssh: Could not resolve hostname github.comm: nodename nor servname provided, or not known`.\nThis indicates a DNS resolution failure because `github.comm` is likely a typo for `github.com`.\n\nAllowed actions: `[\"retry_same\", \"retry_shallow\", \"retry_corrected_url\", \"abort\"]`.\n\nSince the hostname is clearly misspelled (`github.comm` instead of `github.com`), I must use `retry_corrected_url`.\n\nCorrected repo URL: `git@github.com:codeclimate-community/codeclimate-govet`",
+                    "type": "reasoning_text"
+                }
+            ],
+            "encrypted_content": "",
+            "status": "completed"
+        },
+        {
+            "content": [
+                {
+                    "type": "output_text",
+                    "annotations": [],
+                    "logprobs": [],
+                    "text": "```json\n{\n  \"action\": \"retry_corrected_url\",\n  \"reason\": \"The hostname 'github.comm' is misspelled and likely intended to be 'github.com', causing a DNS resolution failure.\",\n  \"corrected_repo_url\": \"git@github.com:codeclimate-community/codeclimate-govet\"\n}\n```"
+                }
+            ],
+            "id": "msg_5wjqo5zrhTSHdG3alYs2IUCXaCO8Tx1E",
+            "role": "assistant",
+            "status": "completed",
+            "type": "message"
+        }
+    ],
+    "status": "completed",
+    "usage": {
+        "input_tokens": 417,
+        "output_tokens": 362,
+        "total_tokens": 779,
+        "input_tokens_details": {
+            "cached_tokens": 48
+        }
+    }
+}

@@ -10,7 +10,8 @@ import urllib.error
 import urllib.request
 
 
-DEFAULT_BASE_URL = "http://10.10.1.91:11235"
+# DEFAULT_BASE_URL = "http://10.10.1.91:11235"
+DEFAULT_BASE_URL = "http://127.0.0.1:8080"
 DEFAULT_MODEL = os.getenv("LOCAL_LLAMA_MODEL", "llama3")
 
 
