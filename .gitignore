@@ -15,3 +15,7 @@ __pycache__
 
 # Generated clones created by ai-agent-build-repo.
 ai-agent-build-repo/temp/
+
+# Spotify app
+.cache
+
