@@ -169,9 +169,10 @@ class MLP(nn.Module):
 
     def forward(self, x):
         hidden = self.c_fc(x)
-        hidden = 0.5 * hidden * (1.0 + torch.tanh(
-            0.7978845608 * (hidden + 0.044715 * hidden.pow(3))
-        ))
+        # hidden = 0.5 * hidden * (1.0 + torch.tanh(
+        #     0.7978845608 * (hidden + 0.044715 * hidden.pow(3))
+        # ))
+        hidden = F.gelu(hidden, approximate="tanh")
         return self.c_proj(hidden)
 
 
