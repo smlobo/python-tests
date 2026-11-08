@@ -239,9 +239,16 @@ def load_model(device):
 def main():
     device = get_device()
     print(f'Using device: {device}')
-    tokenizer = GPT2Tokenizer(cached_file("vocab.json"), cached_file("merges.txt"))
+    tokenizer = GPT2Tokenizer(
+        cached_file("vocab.json"),
+        cached_file("merges.txt")
+    )
     model = load_model(device)
-    input_ids = torch.tensor([tokenizer.encode(PROMPT)], dtype=torch.long, device=device)
+    input_ids = torch.tensor(
+        [tokenizer.encode(PROMPT)],
+        dtype=torch.long,
+        device=device
+    )
     print(f'Initial input_ids shape (batch x tokens): {input_ids.shape}')
 
     with torch.inference_mode():
