@@ -13,7 +13,7 @@ def main():
 
     # Qwen's checkpoint is stored in bfloat16. Use float16 on MPS for broader
     # Apple GPU support; on other devices, let Transformers use the checkpoint dtype.
-    model_kwargs = {"torch_dtype": torch.float16} if device == "mps" else {}
+    model_kwargs = {"dtype": torch.float16} if device == "mps" else {}
     model = AutoModelForCausalLM.from_pretrained(
         model_id, **model_kwargs
     ).to(device)

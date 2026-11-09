@@ -10,7 +10,7 @@ from torch.nn import functional as F
 from huggingface_hub import constants
 from safetensors.torch import load_file
 
-from utilities import get_device
+from utilities import bpe, get_device
 
 
 PROMPT = "The process of making tea begins with"
@@ -72,34 +72,7 @@ class GPT2Tokenizer:
         )
 
     def _bpe(self, token):
-        if token in self.cache:
-            return self.cache[token]
-        word = tuple(token)
-        while len(word) > 1:
-            pairs = set(zip(word, word[1:]))
-            pair = min(pairs, key=lambda item: self.ranks.get(item, float("inf")))
-            if pair not in self.ranks:
-                break
-            first, second = pair
-            merged = []
-            i = 0
-            while i < len(word):
-                try:
-                    j = word.index(first, i)
-                    merged.extend(word[i:j])
-                    i = j
-                except ValueError:
-                    merged.extend(word[i:])
-                    break
-                if i < len(word) - 1 and word[i] == first and word[i + 1] == second:
-                    merged.append(first + second)
-                    i += 2
-                else:
-                    merged.append(word[i])
-                    i += 1
-            word = tuple(merged)
-        self.cache[token] = word
-        return word
+        return bpe(token, self.ranks, self.cache)
 
     def encode(self, text):
         ids = []
@@ -164,7 +137,9 @@ class Attention(nn.Module):
 class MLP(nn.Module):
     def __init__(self, width):
         super().__init__()
+        # up projection
         self.c_fc = Conv1D(width, 4 * width)
+        # down projection
         self.c_proj = Conv1D(4 * width, width)
 
     def forward(self, x):
@@ -232,7 +207,10 @@ def load_model(device):
     print(f'  dimension (n_embd): {model.width}')
     print(f'  token embedding (vocab_size x width(token_dim)): {model.wte}')
     print(f'  position embedding (tokens(max) x width(token_dim)): {model.wpe}')
-    print(f'  attention heads: {model.h[0].attn.heads}')
+    print(f'  Attention heads: {model.h[0].attn.heads}')
+    print(f'  Attention q+k+v: {model.h[0].attn.c_attn.weight.shape}')
+    print(f'  Attention c_proj (out): {model.h[0].attn.c_proj.weight.shape}')
+    print(f'  MLP up/down proj: {model.h[0].mlp.c_proj.weight.shape}')
     return model
 
 

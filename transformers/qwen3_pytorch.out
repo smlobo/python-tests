@@ -1,0 +1,43 @@
+Using device: mps
+Model:
+  layers: 28
+  dimension (hidden_size): 1024
+  token embedding (vocab_size x width(token_dim)): Embedding(151936, 1024)
+  Attention heads: 16
+  Attention head dim: 128
+  Attention KV heads: 8
+  Attention query projection: Linear(in_features=1024, out_features=2048, bias=False)
+  Attention kv projection: Linear(in_features=1024, out_features=1024, bias=False)
+  Attention output projection: Linear(in_features=2048, out_features=1024, bias=False)
+  MLP gate/up/down proj: Linear(in_features=1024, out_features=3072, bias=False)
+Initial input_ids shape (batch x tokens): torch.Size([1, 7])
+Qwen3 shape sent to transformer blocks: torch.Size([1, 7, 1024])
+[4665088320] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665270800] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665271760] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665272400] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665272720] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665273040] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665273360] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665273680] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665274000] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665274320] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665274640] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665274960] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665275280] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665275600] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665275920] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665276240] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665276560] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665276880] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665277200] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665277520] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665277840] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4665278160] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883316816] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883317136] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883317456] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883317776] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883318096] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+[4883318416] Attention before transpose; q: torch.Size([1, 7, 16, 128]), kv: torch.Size([1, 7, 8, 128])
+The process of making tea begins with the selection of the tea leaves. The quality of the tea leaves is crucial for the final taste and aroma of the tea.

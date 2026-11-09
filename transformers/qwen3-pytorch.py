@@ -11,7 +11,7 @@ from torch.nn import functional as F
 from huggingface_hub import constants
 from safetensors.torch import load_file
 
-from utilities import get_device
+from utilities import bpe, get_device
 
 
 MODEL_ID = "Qwen/Qwen3-0.6B-Base"
@@ -90,37 +90,7 @@ class QwenTokenizer:
         self.cache = {}
 
     def _bpe(self, token):
-        if token in self.cache:
-            return self.cache[token]
-        word = tuple(token)
-        while len(word) > 1:
-            pairs = set(zip(word, word[1:]))
-            pair = min(pairs, key=lambda candidate: self.ranks.get(candidate, float("inf")))
-            if pair not in self.ranks:
-                break
-
-            first, second = pair
-            merged = []
-            index = 0
-            while index < len(word):
-                try:
-                    next_index = word.index(first, index)
-                    merged.extend(word[index:next_index])
-                    index = next_index
-                except ValueError:
-                    merged.extend(word[index:])
-                    break
-
-                if index + 1 < len(word) and word[index:index + 2] == pair:
-                    merged.append(first + second)
-                    index += 2
-                else:
-                    merged.append(word[index])
-                    index += 1
-            word = tuple(merged)
-
-        self.cache[token] = word
-        return word
+        return bpe(token, self.ranks, self.cache)
 
     def _encode_text(self, text):
         text = unicodedata.normalize("NFC", text)
@@ -283,7 +253,7 @@ class Qwen3(nn.Module):
         x = self.embed_tokens(input_ids)
         if self.first_time:
             print(f'Qwen3 shape sent to transformer blocks: {x.shape}')
-        self.first_time = False
+            self.first_time = False
         for layer in self.layers:
             x = layer(x, positions)
         x = self.norm(x)
@@ -316,12 +286,13 @@ def load_model(device):
     print(f'  layers: {len(model.layers)}')
     print(f'  dimension (hidden_size): {config["hidden_size"]}')
     print(f'  token embedding (vocab_size x width(token_dim)): {model.embed_tokens}')
-    print(f'  attention heads: {model.layers[0].self_attn.num_heads}')
-    print(f'  head dim: {model.layers[0].self_attn.head_dim}')
-    print(f'  attention KV heads: {model.layers[0].self_attn.num_key_value_heads}')
-    print(f'  attention query projection: {model.layers[0].self_attn.q_proj}')
-    print(f'  attention kv projection: {model.layers[0].self_attn.k_proj}, {model.layers[0].self_attn.v_proj}')
-    print(f'  attention output projection: {model.layers[0].self_attn.o_proj}')
+    print(f'  Attention heads: {model.layers[0].self_attn.num_heads}')
+    print(f'  Attention head dim: {model.layers[0].self_attn.head_dim}')
+    print(f'  Attention KV heads: {model.layers[0].self_attn.num_key_value_heads}')
+    print(f'  Attention query projection: {model.layers[0].self_attn.q_proj}')
+    print(f'  Attention kv projection: {model.layers[0].self_attn.k_proj}')
+    print(f'  Attention output projection: {model.layers[0].self_attn.o_proj}')
+    print(f'  MLP gate/up/down proj: {model.layers[0].mlp.gate_proj}')
 
     return model, config
 

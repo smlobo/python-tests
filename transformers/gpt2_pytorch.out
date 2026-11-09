@@ -1,0 +1,25 @@
+Using device: mps
+Model:
+  layers: 12
+  dimension (n_embd): 768
+  token embedding (vocab_size x width(token_dim)): Embedding(50257, 768)
+  position embedding (tokens(max) x width(token_dim)): Embedding(1024, 768)
+  Attention heads: 12
+  Attention q+k+v: torch.Size([768, 2304])
+  Attention c_proj (out): torch.Size([768, 768])
+  MLP up/down proj: torch.Size([3072, 768])
+Initial input_ids shape (batch x tokens): torch.Size([1, 7])
+GPT2 shape sent to transformer blocks: torch.Size([1, 7, 768])
+[4415680064] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4415746320] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4415747280] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4301142048] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4301142960] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4415776112] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416069952] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416071312] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416089168] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416089936] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416090704] Attention q, k, v before transpose: (1, 7, 12, 64)
+[4416091216] Attention q, k, v before transpose: (1, 7, 12, 64)
+The process of making tea begins with the preparation of the tea. The tea is then poured into a bowl and placed in a large bowl.
