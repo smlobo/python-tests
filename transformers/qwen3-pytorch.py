@@ -1,4 +1,5 @@
 """Run Qwen3-0.6B-Base using PyTorch, without Transformers."""
+# https://huggingface.co/Qwen/Qwen3-0.6B-Base
 
 import json
 import unicodedata

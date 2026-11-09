@@ -1,4 +1,5 @@
 """Run Falcon3-1B-Base from the Hugging Face cache without Transformers."""
+# https://huggingface.co/tiiuae/Falcon3-1B-Base
 
 import json
 from pathlib import Path

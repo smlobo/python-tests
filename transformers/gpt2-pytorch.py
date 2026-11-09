@@ -1,4 +1,5 @@
 """Run GPT-2 from the Hugging Face cache with PyTorch, without Transformers."""
+# https://huggingface.co/openai-community/gpt2
 
 import json
 import re
